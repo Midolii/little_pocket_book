@@ -22,23 +22,45 @@ import {
 const routes = [{
     path: '/',
     name: 'index',
-    component: () => import( /* webpackChunkName: "login" */ '../views/IndexView.vue')
+    component: () => import( /* webpackChunkName: "login" */ '../views/IndexView.vue'),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/login',
     name: 'login',
-    component: () => import( /* webpackChunkName: "login" */ '../views/LoginView.vue')
+    component: () => import( /* webpackChunkName: "login" */ '../views/LoginView.vue'),
+    requiresAuth: false
   },
   {
     path: '/register',
     name: 'register',
-    component: () => import( /* webpackChunkName: "login" */ '../views/RegisterView.vue')
+    component: () => import( /* webpackChunkName: "login" */ '../views/RegisterView.vue'),
+    requiresAuth: false
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes,
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!localStorage.token) {
+      next({
+        path: '/login',
+        params: {
+          redirect: to.fullPath
+        }
+      })
+    }else{
+      next()
+    }
+  }else{
+    next()
+  }
 })
 
 export default router

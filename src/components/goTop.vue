@@ -9,13 +9,10 @@
 
 <style scoped lang="scss">
 .goTop {
-  position: fixed;
-  right: 32px;
-  bottom: 32px;
   height: 36px;
   width: 36px;
   padding: 4px;
-  opacity: 0.3;
+  opacity: 0.5;
   border-radius: 50%;
   transition: opacity 0.3s ease;
   display: flex;

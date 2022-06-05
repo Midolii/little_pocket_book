@@ -2,12 +2,7 @@
   <transition name="toggleRouterView">
     <router-view></router-view>
   </transition>
-  <go-top />
 </template>
-
-<script setup>
-import GoTop from '@/components/goTop';
-</script>
 
 <style lang="scss">
 body {

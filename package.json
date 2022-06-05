@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.27.2",
     "core-js": "^3.8.3",
+    "crypto-js": "^4.1.1",
     "element-plus": "^2.2.2",
     "unplugin-auto-import": "^0.7.2",
     "unplugin-vue-components": "^0.19.5",

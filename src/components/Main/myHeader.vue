@@ -4,26 +4,52 @@
       <p class="font-13 letter-spacing-1 uppercase">{{ title }}</p>
     </router-link>
     <div class="userinfo">
-      <p class="font-1 letter-spacing-1 mx-10">{{ username }}</p>
-      <img class="box-32 avator" :src="avator_url" alt="" />
+      <div class="flex_top">
+        <p class="font-1 letter-spacing-1 mx-10">{{ username }}</p>
+        <img
+          class="box-32 avator"
+          :src="avator_url"
+          alt=""
+          @click="toggleAvatar()"
+        />
+      </div>
+      <transition name="toggleRouterView">
+        <div class="logout" v-show="isClickedAvatar">
+          <Button>个人信息</Button>
+          <Button @click="logout()"> 注销 </Button>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
 
 <script setup>
+// import store from '@/store'
 
-import store from '@/store'
+import { ref } from "vue";
+import router from "@/router";
 
-const title = "Hello world";
-
-const avator_url = store.state.avator_url;
-const username = store.state.username;
-
+// import {reactive} from 'vue'
+const title = "Simple记账簿";
+const avator_url = localStorage.avatar_url;
+const username = localStorage.username;
+const isClickedAvatar = ref(false);
+const toggleAvatar = () => {
+  isClickedAvatar.value = !isClickedAvatar.value;
+};
+const logout = () => {
+  localStorage.clear();
+  router.push({
+    path: "/login",
+  });
+};
 </script>
 
 <style lang="scss" scoped>
 .header {
+  font-weight: bold;
   // min-height: 60px;
+  height: 60px;
   background-color: #fff;
   border-bottom: 1px solid #eee;
   padding: 0 20px;
@@ -31,21 +57,56 @@ const username = store.state.username;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 10%);
-  // 
+  //
   .goIndex {
     text-decoration: none;
     color: #2c3e50;
-    -webkit-tap-highlight-color:transparent;
+    -webkit-tap-highlight-color: transparent;
   }
-  // 
+  //
   .userinfo {
-    display: flex;
-    align-items: center;
-    // 
-    .avator {
-      padding: 4px;
-      border-radius: 50%;
-      background-color: #eee;
+    display: block;
+    height: 100%;
+    //
+    .flex_top {
+      display: flex;
+      flex-direction: row;
+      height: 100%;
+      align-items: center;
+      .avator {
+        padding: 4px;
+        border-radius: 50%;
+        background-color: #eee;
+        box-shadow: 2px 2px 4px 0px rgba(0 0 0 / 10%);
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+      }
+    }
+    .logout {
+      position: absolute;
+      width: 90px;
+      right: 20px;
+      margin: 10px 0;
+      background: #fff;
+      border-radius: 4px;
+      box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 10%);
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      button {
+        padding: 10px;
+        border: none;
+        background: transparent;
+        font-size: 0.8rem;
+        width: 100%;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        transition: all 0.3s ease;
+      }
+      button:active {
+        font-weight: bold;
+        transition: all 0.3s ease;
+      }
     }
   }
 }
