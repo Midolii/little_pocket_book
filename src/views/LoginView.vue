@@ -60,7 +60,6 @@ const login = () => {
   axios
     .post("userAction/login", reqDataBody)
     .then((res) => {
-      console.log(res.data);
       if (res.data.status == 1) {
         localStorage.username = res.data.content.data.username;
         localStorage.avatar_url =

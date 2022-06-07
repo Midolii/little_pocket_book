@@ -1,10 +1,12 @@
 <template>
-  <div class="goTop">
-    Top
-  </div>
+  <div class="goTop" @click="goTop">Top</div>
 </template>
 
 <script setup>
+const goTop = () => {
+  document.body.scrollTop = 0
+  window.screenTop
+};
 </script>
 
 <style scoped lang="scss">

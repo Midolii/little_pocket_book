@@ -20,12 +20,12 @@
     <div class="hr_col"></div>
     <div class="cost_info">
       <div class="first_line">
-        <span>{{ item.time }}</span>
+        <span>{{ item.record_date_year }}-{{item.record_date_month}}-{{item.record_date_day}} / {{item.record_date_hour}}</span>
       </div>
       <div class="second_line">
-        <span class="flex_auto">{{ item.address }}</span>
+        <span class="flex_auto">{{ item.record_place }}</span>
         <span
-          >{{ item.cost }} <span class="font-bold font-12">{{ currency }}</span></span
+          >{{ item.record_cost }} <span class="font-bold font-12">{{ currency }}</span></span
         >
       </div>
     </div>
@@ -41,9 +41,12 @@ const props = defineProps({
   item: {
     type: Object,
     default: () => ({
-      time: "2020-01-01",
-      address: "Test...",
-      cost: "100",
+      record_date_year: "",
+      record_date_month: "",
+      record_date_day: "",
+      record_hour: "",
+      record_place: "",
+      record_cost: "",
     }),
   },
 });
