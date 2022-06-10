@@ -15,8 +15,7 @@
       </div>
       <transition name="toggleRouterView">
         <div class="logout" v-show="isClickedAvatar">
-          <Button>个人信息</Button>
-          <Button @click="logout()"> 注销 </Button>
+          <Button @click="logout"> 登出 </Button>
         </div>
       </transition>
     </div>
@@ -37,6 +36,7 @@ const isClickedAvatar = ref(false);
 const toggleAvatar = () => {
   isClickedAvatar.value = !isClickedAvatar.value;
 };
+
 const logout = () => {
   localStorage.clear();
   router.push({

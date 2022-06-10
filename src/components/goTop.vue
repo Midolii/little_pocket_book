@@ -4,8 +4,7 @@
 
 <script setup>
 const goTop = () => {
-  document.body.scrollTop = 0
-  window.screenTop
+  window.scrollTo(0, 0)
 };
 </script>
 

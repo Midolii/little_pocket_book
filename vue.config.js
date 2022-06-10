@@ -6,8 +6,8 @@ const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
   transpileDependencies: true,
   devServer: {
-    // proxy: "http://localhost:3000/"
-    proxy: "http://nps.midolii.com:3000/"
+    proxy: "http://localhost:3000/"
+    // proxy: "http://nps.midolii.com:3000/"
   },
   configureWebpack: {
     plugins: [

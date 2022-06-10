@@ -1,5 +1,6 @@
 import {
-  reactive,ref
+  reactive,
+  ref
 } from "vue";
 
 const getCurDay = () => {
@@ -24,21 +25,6 @@ const getCurDate = () => {
   return new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), new Date().getHours(), new Date().getMinutes(), new Date().getSeconds())
 }
 
-const temp = {
-  userid: localStorage.userid,
-  record_cost: 0,
-  record_type: "",
-  record_date_year: "",
-  record_date_month: "",
-  record_date_day: "",
-  record_date_hour: getCurDate(),
-  record_date_full: getCurDay(),
-  record_place: "",
-  record_content: "",
-}
-
-const cost = reactive(temp)
-
 const sameWeek = (day) => { //当前日期 
   let sameWeek = false;
   let time = new Date();
@@ -52,9 +38,69 @@ const sameWeek = (day) => { //当前日期
   return sameWeek; //返回是否本周;
 }
 
+const temp = {
+  userid: localStorage.userid,
+  is_income: 0,
+  record_cost: 0,
+  record_type: "",
+  record_date_year: "",
+  record_date_month: "",
+  record_date_day: "",
+  record_date_hour: getCurDate(),
+  record_date_full: getCurDay(),
+  record_place: "",
+  record_content: "",
+}
+
+const cost = reactive(temp)
+
 const items = reactive({
   data: [],
   flashTotal: () => {
+    let today = new Date().getDate();
+    if (today < 10) {
+      today = '0' + today
+    }
+    const day = today
+    const year = new Date().getFullYear()
+    const month = new Date().getMonth() + 1
+    return items.data.reduce((a, b) => {
+      if(year != b.record_date_year || month != b.record_date_month) {
+        return a
+      }
+      if (b.record_date_day != day) {
+        return a;
+      }
+      if (b.is_income == 1) {
+        return a
+      }
+      return Number(a) + Number(b.record_cost)
+    }, 0);
+  },
+  flashWeekTotal: () => {
+    return items.data.reduce((a, b) => {
+      if (!sameWeek(new Date(b.record_date_year, b.record_date_month - 1, b.record_date_day, 0, 0, 0).getTime())) {
+        return a;
+      }
+      if (b.is_income == 1) {
+        return a
+      }
+      return Number(a) + Number(b.record_cost)
+    }, 0);
+  },
+  flashMonthTotal: () => {
+    const curMonth = new Date().getMonth() + 1
+    return items.data.reduce((a, b) => {
+      if (b.record_date_month != curMonth) {
+        return a;
+      }
+      if (b.is_income == 1) {
+        return a
+      }
+      return Number(a) + Number(b.record_cost)
+    }, 0);
+  },
+  flashInTotal: ()=>{
     let today = new Date().getDate();
     if (today < 10) {
       today = '0' + today
@@ -64,24 +110,33 @@ const items = reactive({
       if (b.record_date_day != day) {
         return a;
       }
-      return Number(a) + Number(b.record_cost);
+      if (b.is_income == 0) {
+        return a
+      }
+      return Number(a) + Number(b.record_cost)
     }, 0);
   },
-  flashWeekTotal: () => {
+  flashWeekInTotal: ()=>{
     return items.data.reduce((a, b) => {
-      if (!sameWeek(new Date(b.record_date_year, b.record_date_month - 1, b.record_date_day,0,0,0).getTime())) {
+      if (!sameWeek(new Date(b.record_date_year, b.record_date_month - 1, b.record_date_day, 0, 0, 0).getTime())) {
         return a;
       }
-      return Number(a) + Number(b.record_cost);
+      if (b.is_income == 0) {
+        return a
+      }
+      return Number(a) + Number(b.record_cost)
     }, 0);
   },
-  flashMonthTotal: () => {
+  flashMonthInTotal: ()=>{
     const curMonth = new Date().getMonth() + 1
     return items.data.reduce((a, b) => {
       if (b.record_date_month != curMonth) {
         return a;
       }
-      return Number(a) + Number(b.record_cost);
+      if (b.is_income == 0) {
+        return a
+      }
+      return Number(a) + Number(b.record_cost)
     }, 0);
   },
   flashList: () => {
@@ -108,7 +163,6 @@ const items = reactive({
         return 1;
       }
     });
-    // items.flashTotal()
     return res
   }
 });
@@ -116,7 +170,10 @@ const items = reactive({
 const totalAll = reactive({
   day_total: 0,
   month_total: 0,
-  week_total: 0
+  week_total: 0,
+  day_total_in: 0,
+  week_total_in: 0,
+  month_total_in: 0,
 })
 
 const currentSelect = ref([]);
