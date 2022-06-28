@@ -67,6 +67,8 @@ import axios from "axios";
 import { ElMessage } from "element-plus";
 import { getHash } from "@/lib/getHash.js";
 
+axios.defaults.baseURL = "http://180.76.134.27:3000"
+
 const { form } = user();
 const register = () => {
   const email_reg = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;

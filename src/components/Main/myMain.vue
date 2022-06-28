@@ -144,21 +144,22 @@
         {{ selectInfo }}<span>{{ currentSelect.length }}条</span>
       </div>
       <div class="my_Hr"></div>
-      <div v-if="currentSelect.length === 0">
-        <p class="font-12">暂无消费记录</p>
-      </div>
+      
       <div class="list" v-if="currentSelect.length > 0">
         <div v-for="item in currentSelect" :key="item">
           <cost-list-item :item="item" />
         </div>
       </div>
-      <div class="my_Hr"></div>
+      <div class="my_Hr" v-if="currentSelect.length > 0"></div>
       <div class="my-30">
-        <span class="font-12">
+        <span class="font-12" v-if="currentSelect.length > 0">
           总计
           <span class="font-bold">{{ currentSelect.length }}</span>
           条记录</span
         >
+        <div v-if="currentSelect.length === 0">
+        <p class="font-12">暂无消费记录</p>
+      </div>
       </div>
     </div>
   </div>
@@ -174,6 +175,7 @@ import { reactive } from "vue";
 // import router from "@/router";
 // import store from "@/store";
 
+axios.defaults.baseURL = "http://180.76.134.27:3000"
 const screenType = reactive({
   val: "",
 });
