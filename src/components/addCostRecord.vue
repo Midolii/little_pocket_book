@@ -109,6 +109,7 @@ const tempDateFull = cost.record_date_full;
 const tempDateHour = cost.record_date_hour;
 
 axios.defaults.baseURL = "http://180.76.134.27:3000"
+
 totalAll
 tempDateFull
 tempDateHour
