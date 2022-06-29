@@ -13,7 +13,7 @@ const goTop = () => {
   height: 36px;
   width: 36px;
   padding: 4px;
-  opacity: 0.5;
+  opacity: 0.7;
   border-radius: 50%;
   transition: opacity 0.3s ease;
   display: flex;

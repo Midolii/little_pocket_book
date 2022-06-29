@@ -427,7 +427,7 @@ axios
 }
 .selectInfo {
   text-align: left;
-  margin: 0 30px;
+  margin: 10px 30px;
   font-size: 1.1rem;
   letter-spacing: 2px;
   font-weight: bold;

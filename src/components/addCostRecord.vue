@@ -157,22 +157,6 @@ const addRecordSubmit = () => {
         record_date_hour: `${curDate[0]}:${curDate[1]}:${curDate[2]}`,
       });
       window.location.reload();
-      // items.flashList();
-
-      // totalAll.day_total = Number(items.flashTotal()).toFixed(2);
-      // totalAll.week_total = Number(items.flashWeekTotal()).toFixed(2);
-      // totalAll.month_total = Number(items.flashMonthTotal()).toFixed(2);
-
-      // // items.total += cost.record_cost;
-      // dialogFormVisible.value = false;
-      // cost.record_cost = 0.0;
-      // cost.record_type = "";
-      // cost.record_place = "";
-      // cost.record_content = "";
-      // cost.record_date_full = tempDateFull;
-      // cost.record_date_hour = tempDateHour;
-      // console.log(getCurDate(), getCurDay());
-      
     }
   });
 };
@@ -183,7 +167,7 @@ const addRecordSubmit = () => {
   height: 42px;
   width: 42px;
   padding: 6px;
-  opacity: 0.7;
+  opacity: 0.9;
   border-radius: 50%;
   display: flex;
   justify-content: center;

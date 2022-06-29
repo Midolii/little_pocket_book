@@ -20,25 +20,30 @@ import {
 // ]
 
 const routes = [{
-    path: '/',
-    name: 'index',
-    component: () => import( /* webpackChunkName: "login" */ '../views/IndexView.vue'),
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: () => import( /* webpackChunkName: "login" */ '../views/LoginView.vue'),
-    requiresAuth: false
-  },
-  {
-    path: '/register',
-    name: 'register',
-    component: () => import( /* webpackChunkName: "login" */ '../views/RegisterView.vue'),
-    requiresAuth: false
+  path: '/',
+  name: 'index',
+  component: () => import( /* webpackChunkName: "login" */ '../views/IndexView.vue'),
+  meta: {
+    requiresAuth: true
   }
+},
+{
+  path: '/login',
+  name: 'login',
+  component: () => import( /* webpackChunkName: "login" */ '../views/LoginView.vue'),
+  requiresAuth: false
+},
+{
+  path: '/register',
+  name: 'register',
+  component: () => import( /* webpackChunkName: "login" */ '../views/RegisterView.vue'),
+  requiresAuth: false
+}, {
+  path: '/chart',
+  name: 'chart',
+  component: () => import(/* webpackChunkName: "login" */ '../views/ChartView.vue'),
+  requiresAuth: true
+}
 ]
 
 const router = createRouter({
@@ -55,10 +60,10 @@ router.beforeEach((to, from, next) => {
           redirect: to.fullPath
         }
       })
-    }else{
+    } else {
       next()
     }
-  }else{
+  } else {
     next()
   }
 })

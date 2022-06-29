@@ -1,29 +1,22 @@
 <template>
   <div class="rb">
-    <!-- <div class="click_to_look" @click="popupWindow"></div> -->
+    <div><my-chart/></div>
     <div><go-top /></div>
     <div><add-cost-record /></div>
-  </div>
-  <div v-if="is_click" class="fixed">
-    <!-- <div class="popup_window"></div> -->
   </div>
 </template>
 
 <script setup>
 import GoTop from "@/components/goTop";
 import AddCostRecord from "@/components/addCostRecord";
-// import { ref } from "vue";
-// const is_click = ref(false);
-// const popupWindow = () => {
-//   is_click.value = true;
-// };
+import MyChart from '@/components/my-chart'
 </script>
 
 <style lang="scss" scoped>
 .rb {
   position: fixed;
-  right: 32px;
-  bottom: 32px;
+  right: 24px;
+  bottom: 64px;
   display: flex;
   flex-direction: column;
   justify-content: center;
