@@ -29,7 +29,7 @@ import { onMounted, reactive } from "vue";
 import axios from "axios";
 import { ElMessage } from "element-plus";
 
-axios.defaults.baseURL = "midolii.com";
+axios.defaults.baseURL = "https://midolii.com";
 const chart_length = 130;
 const type = reactive({
   val: "",
