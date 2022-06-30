@@ -67,7 +67,7 @@ import axios from "axios";
 import { ElMessage } from "element-plus";
 import { getHash } from "@/lib/getHash.js";
 
-axios.defaults.baseURL = "https://midolii.com"
+axios.defaults.baseURL = "https://midolii.com:4433"
 
 const { form } = user();
 const register = () => {

@@ -108,7 +108,7 @@ const w_90 = "90%";
 const tempDateFull = cost.record_date_full;
 const tempDateHour = cost.record_date_hour;
 
-axios.defaults.baseURL = "https://midolii.com"
+axios.defaults.baseURL = "https://midolii.com:4433"
 
 totalAll
 tempDateFull
