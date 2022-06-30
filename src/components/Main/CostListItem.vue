@@ -291,7 +291,7 @@ import { ElMessage } from "element-plus";
 import { defineProps, reactive, toRefs, ref } from "vue";
 import { items, totalAll, getCurDate } from "@/store/cost_list";
 
-axios.defaults.baseURL = "http://180.76.134.27:3000"
+axios.defaults.baseURL = "https://midolii.com"
 const props = defineProps({
   item: {
     type: Object,

@@ -175,7 +175,7 @@ import { reactive } from "vue";
 // import router from "@/router";
 // import store from "@/store";
 
-axios.defaults.baseURL = "http://180.76.134.27:3000"
+axios.defaults.baseURL = "https://midolii.com"
 const screenType = reactive({
   val: "",
 });
