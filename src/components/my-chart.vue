@@ -17,9 +17,9 @@
     @click="chart"
     v-show="is_click"
   >
-    <router-link to="/">
-      <img src="../assets/cheveron-left.svg" alt="" srcset="" />
-    </router-link>
+    <!-- <router-link to="/"> -->
+      <img src="../assets/cheveron-left.svg" alt="" srcset="" @click="goBack"/>
+    <!-- </router-link> -->
   </div>
 </template>
 
@@ -36,6 +36,9 @@ watchEffect(() => {
     is_click.value = false;
   }
 });
+const goBack = () =>{
+  window.location.href = '/'
+}
 </script>
 
 <style scoped lang="scss">
